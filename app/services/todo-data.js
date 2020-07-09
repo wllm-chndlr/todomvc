@@ -14,10 +14,25 @@ class Todo {
 export default class TodoDataService extends Service {
     @tracked todos = [];
 
+    get all() {
+        return this.todos;
+    }
+
+    get incomplete() {
+        return this.todos.filter(todo => {
+            return todo.isCompleted === false;
+        });
+    }
+
     @action
     add(text) {
         let newTodo = new Todo(text);
 
         this.todos = [...this.todos, newTodo];
+    }
+
+    @action
+    clearCompleted() {
+        this.todos = this.incomplete;
     }
 }

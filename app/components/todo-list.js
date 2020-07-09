@@ -1,4 +1,6 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { inject as service } from '@ember/service';
 
-export default Component.extend({
-});
+export default class TodoListComponent extends Component {
+  @service('todo-data') todos;
+}
